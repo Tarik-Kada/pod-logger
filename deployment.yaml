@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pod-event-logger
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pod-event-logger
+  template:
+    metadata:
+      labels:
+        app: pod-event-logger
+    spec:
+      serviceAccountName: pod-event-logger-sa
+      containers:
+      - name: pod-event-logger
+        image: tarikkada/pod-logger:latest
